@@ -20,15 +20,30 @@ let getPokemon = (db=conn) => {
 }
 
 let addPokemon = (pId, tId, db=conn) => {
-    console.log(pId, tId)
     return db('tPokemon')
         .insert({"trainer_id": tId, "pokemon_id": pId})
         
 }
 
+let addTrainer = (name, db = conn) => {
+    return db('trainers')
+        .insert({name})
+}
+
+let getTrainer = (tId, db = conn) => {
+    return db('trainers')
+        .select("*")
+        .where('id', tId)
+        .first()
+}
+
+
+
 module.exports = {
     getTrainers,
     getTrainersPokemon,
     getPokemon,
-    addPokemon
+    addPokemon,
+    addTrainer,
+    getTrainer
 }

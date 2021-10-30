@@ -28,6 +28,7 @@ server.get('/:id/newPokemon', (req, res) => {
 server.post('/:id/newPokemon', (req, res) => {
     const {id} = req.params
     const {id: pId} = req.body
+    console.log(id, pId)
     db.addPokemon(pId, id)
         .then(() => {
             res.redirect('/')
@@ -38,11 +39,40 @@ server.post('/:id/newPokemon', (req, res) => {
 
 server.get('/:id', (req, res) => {
     const {id} = req.params 
+    console.log(req.query.name)
+    // need to add a check to see if they have pokemon to then go through the logic currently in the first if statement
     db.getTrainersPokemon(id)
         .then((info) => {
+            console.log(info)
+            if(info.length >= 1){
+                res.render('trainerPokemon', {info})
+            }
+
+    else if (req.query.name){
+    db.getTrainersPokemon(id)
+        .then((info) => {
+            if (info.length != 0){
+            console.log(info)
             res.render('trainerPokemon', {info})
+            } else if (info.length == 0){
+                res.redirect(`/${id}/newPokemon`)
+            }
         })
+    } else if (!req.query.name){
+            console.log('its me')
+            db.getTrainer(id)
+                .then((infor) => {
+                    console.log(infor)
+                    infor.tName = infor.name
+                    infor.tId = infor.id
+                    res.render('trainerPokemon', {info: [infor]})
+                })
+            
+        }
+        
+    })
 })
+
 
 server.get('/', (req, res) => {
     db.getTrainers()
@@ -53,8 +83,18 @@ server.get('/', (req, res) => {
 })
 
 server.post('/', (req, res) => {
-    const {id} = req.body
-    res.redirect('trainerPokemon', {id})
+    const {name} = req.body
+    db.addTrainer(name)
+        .then(
+            (idOfTrainer) => {
+                console.log(idOfTrainer)
+                return db.getTrainer(idOfTrainer)
+            })
+        .then((newTId) => {
+            console.log(`newTId ${newTId}`)
+            res.redirect(`/${newTId.id}/?name=${name}`)
+        })
+    
 })
 
 
