@@ -104,6 +104,15 @@ server.get('/:id', (req, res) => {
     })
 })
 
+server.post('/:id', (req, res) =>{
+    const {id} = req.params
+    const {pId} = req.body
+    db.releasePokemon(pId)
+        .then(() => {
+            res.redirect(`/${id}`)
+        })
+})
+
 
 server.get('/', (req, res) => {
     db.getTrainers()

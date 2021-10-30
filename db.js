@@ -43,6 +43,13 @@ let updateTPokemon = (nPI, tPI, db = conn) => {
         .where('id', tPI)
 }
 
+let releasePokemon = (tPId, db = conn) => {
+    console.log(tPId)
+    return db('tPokemon')
+    .del()
+    .where('id', tPId)
+}
+
 
 
 module.exports = {
@@ -52,5 +59,6 @@ module.exports = {
     addPokemon,
     addTrainer,
     getTrainer,
-    updateTPokemon
+    updateTPokemon,
+    releasePokemon
 }

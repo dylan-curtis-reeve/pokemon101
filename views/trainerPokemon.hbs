@@ -5,8 +5,12 @@
     <div class="pokemonContainer">
         {{#each info}}
             <div class="fPageCont">
-            {{> pokCards}}
-            <a href="/{{tId}}/swapPokemon/{{pId}}"><button >Swap Pokemon</button></a>
+                {{> pokCards}}
+                <a href="/{{tId}}/swapPokemon/{{pId}}"><button >Swap Pokemon</button></a>
+                <form action="/{{tId}}" method="post">
+                    <input type="hidden" name="pId" value="{{pId}}">
+                    <input type="submit" name="" value="Release Pokemon">
+                </form>
             </div>
         {{/each}}
     </div>
