@@ -1,0 +1,26 @@
+{
+  "name": "pokemon101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "knex": "^0.95.12",
+    "sqlite3": "^5.0.2"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index"
+  },
+  "keywords": [],
+  "author": "It's ya' boy",
+  "license": "ISC"
+}
