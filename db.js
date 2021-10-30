@@ -12,7 +12,7 @@ let getTrainersPokemon = (id, db = conn) => {
         .join('trainers', 'tPokemon.trainer_id', 'trainers.id')
         .join('pokemonList', 'tPokemon.pokemon_id', 'pokemonList.id')
         .select('trainers.name as tName', 'pokemonList.image', 'pokemonList.name as pName',
-        'trainers.id as tId', "pokemonList.image")
+        'trainers.id as tId', "pokemonList.image", "tPokemon.id as pId" )
 }
 
 let getPokemon = (db=conn) => {
@@ -37,6 +37,12 @@ let getTrainer = (tId, db = conn) => {
         .first()
 }
 
+let updateTPokemon = (nPI, tPI, db = conn) => {
+    return db('tPokemon')
+        .update({'pokemon_id': nPI})
+        .where('id', tPI)
+}
+
 
 
 module.exports = {
@@ -45,5 +51,6 @@ module.exports = {
     getPokemon,
     addPokemon,
     addTrainer,
-    getTrainer
+    getTrainer,
+    updateTPokemon
 }

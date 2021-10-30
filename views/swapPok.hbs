@@ -1,0 +1,15 @@
+{{#each pokemonList}}
+    <div class="pokCards">
+    <div>
+        <img src="{{image}}">
+    </div>
+    <div>
+        <p>{{pName}}</p>
+    </div>
+</div>
+<form method="post" action="/{{tDd}}/swapPokemon/{{pId}}">
+    <input type="hidden" name="name" value={{name}}>
+    <input type="hidden" name="id" value={{id}}>
+    <input type="submit" name="" value="I Choose You!">
+</form>
+{{/each}}

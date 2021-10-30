@@ -4,7 +4,10 @@
     </div>
     <div class="pokemonContainer">
         {{#each info}}
+            <div class="fPageCont">
             {{> pokCards}}
+            <a href="/{{tId}}/swapPokemon/{{pId}}"><button >Swap Pokemon</button></a>
+            </div>
         {{/each}}
     </div>
     <div class="newCont">

@@ -12,6 +12,37 @@ server.set('view engine', 'hbs')
 
 // Routes
 
+server.get(`/:tDd/swapPokemon/:pId`, (req, res) => {
+    const {tDd, pId} = req.params
+    console.log(tDd, pId)
+    db.getPokemon()
+    .then((pokemonList) => {
+        for (let i= 0; i < pokemonList.length; i++){
+            if (!pokemonList[i].tDd){
+                pokemonList[i].tDd = tDd
+            }
+            if (!pokemonList[i].pId){
+                pokemonList[i].pId = pId
+            }
+        }
+        console.log({pokemonList})
+        res.render('swapPok', {pokemonList})
+    })
+
+})
+
+server.post(`/:tDd/swapPokemon/:pId`, (req, res) => {
+    const {tDd, pId} = req.params
+    const {id} = req.body
+    console.log(id, pId)
+    db.updateTPokemon(id, pId)
+        .then (() => {
+            res.redirect(`/${tDd}`)
+        })
+})
+
+
+
 server.get('/:id/newPokemon', (req, res) => {
     const {id} = req.params 
     db.getPokemon()
