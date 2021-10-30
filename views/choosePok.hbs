@@ -1,8 +1,21 @@
-{{#each pokemon}}
-<p>{{name}}</p>
-<form method="post" action="/{{tId}}/newPokemon">
-    <input type="hidden" name="name" value={{name}}>
-    <input type="hidden" name="id" value={{id}}>
-    <input type="submit" name="" value="I Choose You!">
-</form>
-{{/each}}
+<div class="fPageCont">
+    <div class="fPageBg">
+        <div class="headingCont">
+            <h1>Pick Your New Best Friend</h1>
+        </div>
+
+        <div class="pokemonContainer">
+            {{#each pokemon}}
+            <div class="pokCards">
+                <img src={{image}}>
+                <p>{{name}}</p>
+                <form method="post" action="/{{tId}}/newPokemon">
+                    <input type="hidden" name="name" value={{name}}>
+                    <input type="hidden" name="id" value={{id}}>
+                    <input type="submit" name="" value="I Choose You!">
+                </form>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

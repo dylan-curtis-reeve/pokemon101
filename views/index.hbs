@@ -1,11 +1,16 @@
-<h1>Gotta Catch Them All</h1>
-<div class="container">
-{{#each trainers}}
-    {{> trainerCard}}
-{{/each}}
+<div class="fPageCont">
+    <div class="headingCont">
+        <h1>Gotta Catch Them All</h1>
+    </div>
+    <div class="trainerContainer">
+        {{#each trainers}}
+            {{> trainerCard}}
+        {{/each}}
+    </div>
+    <div class="newCont">
+        <form method="post" action="/">
+            <input type="text" value="What's your name trainer?" name="name">
+            <input type="submit" name="" value=" + ">
+        </form>
+    </div>
 </div>
-
-<form method="post" action="/">
-    <input type="text" value="What's your name trainer?" name="name">
-    <input type="submit" name="" value=" + ">
-</form>

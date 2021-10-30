@@ -1,8 +1,14 @@
-<h1>Hi {{info.0.tName}}</h1>
-<ul>
-{{#each info}}
-<li><p>{{pName}}</p></li>
-{{/each}}
-</ul>
-
-<a href="/{{info.0.tId}}/newPokemon"><button >Choose New Pokemon</button></a>
+<div class="fPageCont">
+    <div class="headingCont">
+        <h1>Hi {{info.0.tName}}</h1>
+    </div>
+    <div class="pokemonContainer">
+        {{#each info}}
+            {{> pokCards}}
+        {{/each}}
+    </div>
+    <div class="newCont">
+        <a href="/{{info.0.tId}}/newPokemon"><button >Choose New Pokemon</button></a>
+    </div>
+    
+</div>

@@ -12,7 +12,7 @@ let getTrainersPokemon = (id, db = conn) => {
         .join('trainers', 'tPokemon.trainer_id', 'trainers.id')
         .join('pokemonList', 'tPokemon.pokemon_id', 'pokemonList.id')
         .select('trainers.name as tName', 'pokemonList.image', 'pokemonList.name as pName',
-        'trainers.id as tId')
+        'trainers.id as tId', "pokemonList.image")
 }
 
 let getPokemon = (db=conn) => {
